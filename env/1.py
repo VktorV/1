@@ -215,7 +215,12 @@ def copy_line():
         file.write(lines[line_number -1])
 
     
-    print('Копирование выполнено')
+        print('Копирование выполнено')
+
+    with open('phonebook2.txt', 'r', encoding='utf-8') as f:
+        print(f.read())
+    
+    interface()
     
 
 
