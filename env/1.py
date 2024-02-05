@@ -131,6 +131,8 @@
 # - запуск соответствующей функции
 # - осуществление выхода из программы'''
 
+
+
 def input_surname():
     return input('Введите фамилию: ').title()
 
@@ -194,6 +196,28 @@ def search_contact():
          print(contact_str)
     print()
 
+def copy_line():
+    
+    with open('phonebook.txt', 'r', encoding='utf-8') as file:
+        lines= file.readlines()
+        for n, line in enumerate(lines, start=1):
+            print(f'{n:03}:', line)
+
+    line_number= int(input('Введите номер строки: '))
+    if line_number< 1 or line_number > len(lines):
+        print('Некорректный номер строки')
+        line_number= int(input('Введите номер строки: '))
+        print()
+
+
+    
+    with open('phonebook2.txt', 'a',encoding='utf-8' ) as file:
+        file.write(lines[line_number -1])
+
+    
+    print('Копирование выполнено')
+    
+
 
 
 def interface():
@@ -206,12 +230,14 @@ def interface():
             "1 - Ввод данных контакта \n" \
             "2 - Вывести данные на экран \n" \
             "3 - Поиск контакта \n" \
-            "4 - Выход"
+            "4 - копировать \n" \
+            "5 - удалить контакт \n" \
+            "6 - Выход"
             )
         print()
         choice = input("Выберите номер действия: ")
         print()
-        while choice not in ('1', '2', '3', '4'):
+        while choice not in ('1', '2', '3', '4','5','6','7'):
             print("Некорректный ввод данных!")
             choice = input("Выберите номер действия: ")
             print()
@@ -223,7 +249,10 @@ def interface():
             case '3':
                 search_contact()
             case '4':
-                print('Вс2его доброго!')
+                copy_line()
+                
+            case '6':
+                print('Всего доброго!')
 
 if __name__ == '__main__':
     interface()
